@@ -1,0 +1,326 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee9de">
+  <meta
+    name="description"
+    content="Ditados populares brasileiros, regionalismos e frases absurdas explicados num arquivo digital com cara de revista."
+  >
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DITO & FEITO. — Arquivo Popular">
+  <meta
+    property="og:description"
+    content="Um arquivo de ditados e absurdos brasileiros. Descubra o que significam, de onde vêm e como usar."
+  >
+
+  <title>DITO & FEITO. — Arquivo Popular</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Navegação principal">
+        <a class="brand" href="#inicio">
+          DITO<span>&amp;</span>FEITO
+        </a>
+
+        <div class="navlinks">
+          <button
+            class="solid"
+            id="randomBtn"
+            type="button"
+          >
+            ↗ SOLTA UMA PÉROLA
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="wrap hero" aria-labelledby="heroTitle">
+      <div class="heroLeft">
+        <div>
+          <h1 id="heroTitle">
+            TODO MUNDO CONHECE UM <em>DITADO</em> ESQUISITO.
+          </h1>
+
+          <p class="heroDesc">
+            Sabe aquela frase que sua avó soltava do nada?
+            Ela pode estar aqui. Junto com outras que alguém
+            provavelmente inventou na hora.
+          </p>
+        </div>
+
+        <div class="heroStats">
+          <div>
+            <strong id="totalCount">000</strong>
+            <span>Expressões</span>
+          </div>
+
+          <div>
+            <strong id="catCount">00</strong>
+            <span>Assuntos</span>
+          </div>
+
+          <div>
+            <strong>∞</strong>
+            <span>Maneiras de falar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="heroRight" aria-hidden="true">
+        <div class="paper-stack">
+          <div class="sheet">
+            <p>O barato sai caro.</p>
+          </div>
+
+          <div class="sheet">
+            <p>Tem caroço nesse angu.</p>
+          </div>
+
+          <div class="sheet">
+            <p>Onde o vento faz a curva.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"></div>
+
+    <section
+      id="arquivo"
+      class="wrap directory"
+      aria-labelledby="directoryTitle"
+    >
+      <div class="sectionTop">
+        <div>
+          <h2 id="directoryTitle">PROCURE AÍ.</h2>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search" for="search">
+  <svg
+    class="search-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <circle cx="11" cy="11" r="7"></circle>
+    <path d="m16 16 5 5"></path>
+  </svg>
+
+  <input
+    id="search"
+    type="search"
+    placeholder="DIGITE UMA FRASE OU PALAVRA..."
+    autocomplete="off"
+  >
+</label>
+
+        <button
+          class="filter active"
+          data-kind="todos"
+          type="button"
+          aria-pressed="true"
+        >
+          TODOS
+        </button>
+
+        <button
+          class="filter"
+          data-kind="popular"
+          type="button"
+          aria-pressed="false"
+        >
+          POPULARES
+        </button>
+
+        <button
+          class="filter"
+          data-kind="regional"
+          type="button"
+          aria-pressed="false"
+        >
+          REGIONAIS
+        </button>
+
+        <button
+          class="filter"
+          data-kind="inventado"
+          type="button"
+          aria-pressed="false"
+        >
+          ABSURDOS
+        </button>
+
+        <button
+          class="filter"
+          data-kind="favoritos"
+          type="button"
+          aria-pressed="false"
+        >
+          ♡ SALVOS
+        </button>
+      </div>
+
+      <div class="controls2">
+        <div class="chips" id="chips"></div>
+
+        <span
+          class="count"
+          id="resultCount"
+          role="status"
+          aria-live="polite"
+        ></span>
+      </div>
+
+      <div class="grid" id="grid"></div>
+
+      <button
+        class="load"
+        id="loadMore"
+        type="button"
+        hidden
+      >
+        VER MAIS ↓
+      </button>
+    </section>
+
+    <section
+      class="manifesto"
+      id="sobre"
+      aria-labelledby="manifestoTitle"
+    >
+      <div class="wrap manifestoInner">
+        <div>
+          <h2 id="manifestoTitle">
+            ISSO AQUI COMEÇOU COM UM DITADO.
+          </h2>
+
+          <p>
+            Todo mundo conhece uma frase que só faz sentido
+            depois que alguém explica. Outras continuam sem
+            fazer sentido, mesmo depois da explicação.
+            A gente resolveu juntar as duas.
+          </p>
+
+          <p>
+            Tem ditado antigo, expressão regional e frase
+            inventada. Cada uma recebe sua etiqueta.
+            Se a origem não é conhecida, fica como
+            desconhecida mesmo. Não vamos inventar
+            história pra preencher espaço.
+          </p>
+        </div>
+
+        <div class="stamp">
+          <strong>
+            ALGUMAS SÃO ANTIGAS.<br>
+            OUTRAS, NEM TANTO.
+          </strong>
+
+          <p class="micro">
+            UMA MESMA FRASE PODE MUDAR DE SENTIDO
+            CONFORME O LUGAR.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>
+      &copy; <span id="year"></span> Cookieukw
+    </span>
+  </footer>
+
+  <div class="modalbg" id="modalBg" hidden>
+    <article
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      tabindex="-1"
+    >
+      <button
+        class="close"
+        id="closeModal"
+        type="button"
+        aria-label="Fechar"
+      >
+        ×
+      </button>
+
+      <div class="modal-index" id="modalIndex"></div>
+
+      <h2 id="modalTitle"></h2>
+
+      <div class="definition">
+        <h3>O QUE SIGNIFICA?</h3>
+        <p id="modalMeaning"></p>
+      </div>
+
+      <div class="definition">
+        <h3>EXEMPLO DE USO</h3>
+        <p id="modalExample"></p>
+      </div>
+
+      <div class="definition">
+        <h3>QUE TIPO DE FRASE É?</h3>
+        <p id="modalClass"></p>
+      </div>
+
+      <div class="modalDisclaimer" id="modalNote"></div>
+
+      <div class="modalbuttons">
+        <button id="saveBtn" type="button">
+          ♡ GUARDAR
+        </button>
+
+        <button id="copyBtn" type="button">
+          ⧉ COPIAR
+        </button>
+
+        <button id="shareBtn" type="button">
+          ↗ COMPARTILHAR
+        </button>
+
+        <button id="downloadBtn" type="button">
+          ↓ BAIXAR PNG
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+    hidden
+  ></div>
+</body>
+</html>
